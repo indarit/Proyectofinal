@@ -1,0 +1,25 @@
+.ManagerEvaluacion-content {
+        max-width: 980px;
+        margin: 0 auto;
+}
+
+.ManagerEvaluacion-clase {
+    text-align: right;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ManagerEvaluacion-title {
+    text-align: left;
+}
+
+.ManagerEvaluacion-selector {
+    display: flex;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    row-gap: 1.5rem !important;
+    column-gap: 1.5rem !important;
+}
+
