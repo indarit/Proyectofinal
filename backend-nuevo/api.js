@@ -14,16 +14,16 @@ const getAlumnoById = async (req,res) =>{
     .catch((e) => console.error(e))
 }
 
-const getNotasById = async (req,res) =>{
+const getEvaluacionById = async (req,res) =>{
     const userId = req.params.userId;
-    const query = `SELECT modulo_name, semana_number, asistencia_1, asistencia_2,tarea FROM notas_alumno WHERE userid=$1`;
+    const query = `select users_id,semana , status_tarea, status_asist1, status_asist2, nombre_modulo from evaluacion join modulo on modulo.id = evaluacion.modulo_id where users_id= $1`
     await database.pool.query(query,[userId])
     .then((result) => res.status(200).json(result.rows))
     .catch((e) => console.error(e))
 }
 
 module.exports = {
-    getAlumnos,
-    getAlumnoById,
-    getNotasById
-}
+  getAlumnos,
+  getAlumnoById,
+  getEvaluacionById,
+};

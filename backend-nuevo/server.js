@@ -27,7 +27,7 @@ app.use('/user', user);
 
 app.get('/alumnos', api.getAlumnos)
 app.get('/alumnos/:userId' , api.getAlumnoById)
-app.get('/notas/:userId', api.getNotasById)
+app.get("/evaluacion/:userId", api.getEvaluacionById);
 
 
 const url = `http://localhost:${PORT}`;
