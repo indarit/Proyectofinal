@@ -1,67 +1,9 @@
 import React from "react";
 import NavbarMain from "../../navbar/NavbarMain";
-import AutoCloseExample from "./botonesdropdown.jsx";
 import Table from './tablaevaluacion.jsx';
-import Button from './botonguardar.jsx';
-import "./ManagerEvaluacionIndividualMain.css"
+import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-
-const arrGroup = [
-  {
-    value:"1",
-    text:"JUL22-ES"
-  },
-  {
-    value:"2",
-    text:"JUL22-EN"
-  },
-]
-
-const arrModule = [
-  {
-    value:"1",
-    text:"HTML/CSS"
-  },
-  {
-    value:"2",
-    text:"JavaScript I"
-  },
-    {
-    value:"3",
-    text:"JavaScript II"
-  },
-    {
-    value:"4",
-    text:"JavaScript III"
-  },
-    {
-    value:"5",
-    text:"React"
-  },
-    {
-    value:"6",
-    text:"Node"
-  },
-    {
-    value:"7",
-    text:"SQL"
-  },
-]
-
-const arrWeek = [
-  {
-    value:"1",
-    text:"1"
-  },
-  {
-    value:"2",
-    text:"2"
-  },
-    {
-    value:"3",
-    text:"3"
-  },
-]
+import "../../../App.css"
 
 
 const ManagerEvaluacionIndividualMain = () => {
@@ -69,10 +11,10 @@ const ManagerEvaluacionIndividualMain = () => {
     return (
         <>
         <NavbarMain/>
-        <div className={`${baseClassName}-content`}>
-            <div className={`${baseClassName}-clase`}>
-                <h1 className={`${baseClassName}-title`}>Evaluación Individual</h1> 
-                <Button/>
+        <div className={`${baseClassName}-contenedor-principal`}>
+            <div className={`${baseClassName}-contenedor-title-button`}>
+                <h1 className={`${baseClassName}-title-evaluacion`}>Evaluación Individual</h1> 
+                <Button className="save-buttom">Guardar</Button>{' '}
             </div>
         <Container className="container-datos-ai">
         <div className="contenidoAlumno">

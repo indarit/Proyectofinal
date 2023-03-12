@@ -1,10 +1,10 @@
 import Table from 'react-bootstrap/Table';
-import './tablaevaluacion.css';
+import '../../../App.css';
 
 function BasicExample() {
   return (
     <Table striped bordered hover>
-      <thead className="header-table">
+      <thead className="header-table-evaluation">
         <tr>
           <th>Módulo</th>
           <th>Semana</th>

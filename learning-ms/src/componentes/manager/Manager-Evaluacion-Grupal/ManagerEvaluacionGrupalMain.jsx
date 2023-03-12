@@ -2,8 +2,7 @@ import React from "react";
 import NavbarMain from "../../navbar/NavbarMain";
 import AutoCloseExample from "./botonesdropdown.jsx";
 import Table from './tablaevaluacion.jsx';
-import Button from './botonguardar.jsx';
-import "./ManagerEvaluacionGrupalMain.css"
+import "../../../App.css"
 
 const arrGroup = [
   {
@@ -68,12 +67,12 @@ const ManagerEvaluacionGrupalMain = () => {
     return (
         <>
         <NavbarMain/>
-        <div className={`${baseClassName}-content`}>
-            <div className={`${baseClassName}-clase`}>
-                <h1 className={`${baseClassName}-title`}>Evaluación Grupal</h1> 
-                <Button/>
+        <div className={`${baseClassName}-contenedor-principal`}>
+            <div className={`${baseClassName}-contenedor-title-button`}>
+                <h1 className={`${baseClassName}-title-evaluacion`}>Evaluación Grupal</h1> 
+                     
             </div>
-            <div className={`${baseClassName}-selector`}>
+            <div className={`${baseClassName}-selectores-principales`}>
                 <AutoCloseExample title="Grupo" array={arrGroup}/>
                 <AutoCloseExample title="Módulo"array={arrModule}/>
                 <AutoCloseExample title="Semana"array={arrWeek}/>

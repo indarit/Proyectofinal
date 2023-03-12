@@ -148,3 +148,57 @@ background-color: #282c34 !important;
   margin-top: 5%;
   font-size: 15px;
 }
+
+
+/*TABLA Manager-Evaluacion-Grupal*/
+.header-table-evaluation {
+  background-color: #01f1d6 !important;
+  color: black !important;
+}
+
+/*PAG Manager-Evaluacion-Grupal*/
+
+.ManagerEvaluacion-contenedor-principal {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.ManagerEvaluacion-contenedor-title-button {
+  text-align: right;
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ManagerEvaluacion-title-evaluacion {
+  text-align: left;
+}
+
+.ManagerEvaluacion-selectores-principales {
+  display: flex;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  row-gap: 1.5rem !important;
+  column-gap: 1.5rem !important;
+}
+
+/*Botón guardar*/
+.save-buttom {
+  height: 37px;
+  background-color: #01f1d6 !important;
+  border: none !important;
+  color: black !important;
+}
+
+/*Botones desplegables*/
+
+.boton-seleccionar {
+  background-color: #01f1d6 !important;
+  border: none !important;
+  color: black !important;
+}
+
+.opciones-del-boton-seleccionar {
+  background-color: white;
+}
