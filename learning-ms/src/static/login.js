@@ -9,7 +9,6 @@ export default function login ({email, password}){
    
     return res.json()
   }).then(res => { 
-    alert(res.error);
     const {jwt,id,isadmin} = res 
   
    return {jwt,id,isadmin}

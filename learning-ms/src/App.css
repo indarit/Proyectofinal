@@ -149,6 +149,30 @@ background-color: #282c34 !important;
   font-size: 15px;
 }
 
+.registro-mensaje{
+  padding-right: 30% !important ;
+}
+
+.register-button{
+  background-color: #01f1d6 !important;
+  border: none !important;
+}
+
+.form-check-input:checked{
+  background-color: #01f1d6 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.form-check-input:focus{
+ border-color: #b6b6b6 !important;
+  box-shadow: none !important;
+}
+
+.btn:disabled{
+  background-color: #b6b6b6!important;
+}
+
 
 /*TABLA Manager-Evaluacion-Grupal*/
 .header-table-evaluation {

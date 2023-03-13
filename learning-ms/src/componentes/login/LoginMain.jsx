@@ -1,33 +1,30 @@
 import React from "react";
-import { Container, Form, Button} from "react-bootstrap";
+import { Container, Form, Button } from "react-bootstrap";
 import logo from "../../utils/LearningPlatform-bg-white.png";
 import { useState, useEffect } from "react";
 import RegisterModal from "./RegisterModal";
-import useUser from "../hook/useUser"
+import useUser from "../hook/useUser";
 import { useNavigate } from "react-router-dom";
 
 const LoginMain = () => {
   /*SIGN_IN VALUES*/
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {login, isLogged, isAdmin} = useUser()
-  const navigation = useNavigate()
+  const { login, isLogged, isAdmin } = useUser();
+  const navigation = useNavigate();
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    login({ email, password });
+  };
 
-  const handleClick = (e) =>{
-    e.preventDefault()
-    login({email, password})
-    
-  }
-  
   useEffect(() => {
     if (isLogged && isAdmin === true) navigation("/manager-evaluacion-grupal");
   }, [isLogged, navigation, isAdmin]);
-  
+
   useEffect(() => {
     if (isLogged && isAdmin === false) navigation("/alumno-evaluacion");
   }, [isLogged, navigation, isAdmin]);
-
 
   return (
     <Container fluid className="container-login">
@@ -54,7 +51,7 @@ const LoginMain = () => {
             />
           </Form.Group>
 
-          <Button 
+          <Button
             onClick={handleClick}
             className="formulario-button-login"
             variant="primary"
@@ -63,7 +60,7 @@ const LoginMain = () => {
             Iniciar sesión
           </Button>
           <br></br>
-          <RegisterModal/>
+          <RegisterModal />
         </Form>
       </Container>
     </Container>
@@ -71,4 +68,3 @@ const LoginMain = () => {
 };
 
 export default LoginMain;
-
