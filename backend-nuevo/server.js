@@ -25,12 +25,13 @@ app.use(myLogger);
 app.use('/user', user);
 
 
-app.get('/alumnos', api.getAlumnos)
-app.get('/alumnos/:userId' , api.getAlumnoById)
+app.get('/alumno', api.getAlumnos)
+app.get('/alumno/:userId' , api.getAlumnoById)
+app.get("/evaluacion", api.getEvaluacion);
 app.get("/evaluacion/:userId", api.getEvaluacionById)
 app.get("/modulo/:userId", api.getmoduloById)
 app.get("/grupo/:userId", api.getgrupoById)
-//app.get("/evaluaciong", api.getEvaluacion)
+
 
 
 

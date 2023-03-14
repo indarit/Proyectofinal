@@ -39,6 +39,35 @@ const getgrupoById = async (req, res) => {
     .catch((e) => console.error(e));
 };
 
+const get_evaluacion =
+  "select alumnos_id, modulo_id, semana, firstname, status_asist1, status_asist2, status_tarea \
+from grupo g \
+join modulo m on m.curso_id = g.curso_id \
+join evaluacion e on e.modulo_id = m.id \
+join alumnos a ON a.id = e.alumnos_id and a.codigo_grupo = g.codigo_grupo \
+where g.codigo_grupo = $1 and m.id =$2 and e.semana = $3";
+const getEvaluacion = async (req, res) => {
+  try {
+    let codigoGrupo = req.query.grupo;
+    let moduloId = req.query.moduloId;
+    let semana = req.query.semana;
+    await database.pool.query(
+      get_evaluacion,
+      [codigoGrupo, moduloId, semana],
+      (error, result) => {
+        console.log(error);
+        res.json(result.rows);
+      }
+    );
+  } catch (error) {
+    res.json({ error: error.message });
+  }
+};
+
+
+
+
+
 /* const getEvaluacion = async (req, res) => {
   
     const evaluacionGrupal= `select alumno_id, modulo_id, semana, , status_asist1, status_asist2, status_tarea from grupo g join modulo m on m.curso_id = g.curso_id join evaluacion e on e.modulo_id = m.id join alumnos a ON a.id = e.alumno_id and a.codigo_grupo = g.codigo_grupo where g.codigo_grupo = $1 and m.id =$2 and e.semana = $3`
@@ -47,13 +76,13 @@ const getgrupoById = async (req, res) => {
     let semana = req.query.semana;
     await database.pool.query(evaluacionGrupal,[codigoGrupo, moduloId, semana])
  .then((result)=> res.status(200).json(result.rows))
-.catch((e)=> console.error(e))} */
-
+.catch((e)=> console.error(e))} 
+ */
 module.exports = {
   getAlumnos,
   getAlumnoById,
   getEvaluacionById,
   getmoduloById,
   getgrupoById,
-  //getEvaluacion,
+  getEvaluacion,
 }
