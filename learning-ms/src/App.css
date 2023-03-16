@@ -226,3 +226,23 @@ background-color: #282c34 !important;
 .opciones-del-boton-seleccionar {
   background-color: white;
 }
+
+.container-cabecera{
+display: flex !important;
+}
+
+.btn-cabecera{
+  margin-left: 2%;
+  
+}
+
+.alineacion-btns-cabecera{
+  margin-bottom: 3%;
+  margin-top: 3%;
+}
+
+.btn{
+  background-color: #01f1d6!important;
+  border: none !important;
+  color: #282c34 !important;
+}

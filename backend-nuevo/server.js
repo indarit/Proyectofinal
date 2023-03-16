@@ -27,10 +27,13 @@ app.use('/user', user);
 
 app.get('/alumno', api.getAlumnos)
 app.get('/alumno/:userId' , api.getAlumnoById)
-app.get("/evaluacion", api.getEvaluacion);
+app.get("/evaluacion", api.getEvaluacion)
 app.get("/evaluacion/:userId", api.getEvaluacionById)
 app.get("/modulo/:userId", api.getmoduloById)
 app.get("/grupo/:userId", api.getgrupoById)
+app.get("/modulo", api.getmodulos)
+app.get("/grupos", api.getGrupos)
+app.put("/evaluacion", api.putevaluacion)
 
 
 
