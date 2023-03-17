@@ -11,10 +11,11 @@ const AlumnoEvalucionMain = () => {
   return (
     <>
       <NavbarMain />
+          <AlumnoNotasContextProvider>
 
-      <InfoUserContextProvider>
+   
         <AlumnoDatos />
-      </InfoUserContextProvider>
+     
 
       <Container className="container-data-table-ai">
         <Table borderless hover variant="lght" size="md">
@@ -27,11 +28,10 @@ const AlumnoEvalucionMain = () => {
               <th>Tarea</th>
             </tr>
           </thead>
-          <AlumnoNotasContextProvider>
             <AlumnoNotas />
-          </AlumnoNotasContextProvider>
         </Table>
       </Container>
+      </AlumnoNotasContextProvider>
     </>
   );
 };

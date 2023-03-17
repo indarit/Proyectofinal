@@ -18,7 +18,7 @@ const getAlumnoById = async (req, res) => {
 
 const getEvaluacionById = async (req, res) => {
   const userId = req.params.userId;
-  const query = `select firstname, lastname, semana , status_tarea, status_asist1, status_asist2, nombre_modulo from alumnos a join evaluacion e on e.alumnos_id = a.id join modulo m on m.id = e.modulo_id where users_Id =$1`;
+  const query = `select firstname, lastname, github, semana , status_tarea, status_asist1, status_asist2, nombre_modulo from alumnos a join evaluacion e on e.alumnos_id = a.id join modulo m on m.id = e.modulo_id where users_Id =$1 order  by modulo_id asc`;
   await database.pool
     .query(query, [userId])
     .then((result) => res.status(200).json(result.rows))
@@ -48,7 +48,7 @@ from grupo g \
 join modulo m on m.curso_id = g.curso_id \
 join evaluacion e on e.modulo_id = m.id \
 join alumnos a ON a.id = e.alumnos_id and a.codigo_grupo = g.codigo_grupo \
-where g.codigo_grupo = $1 and m.id =$2 and e.semana = $3";
+where g.codigo_grupo = $1 and m.id =$2 and e.semana = $3  order by firstname asc";
 const getEvaluacion = async (req, res) => {
   try {
     let codigoGrupo = req.query.grupo;

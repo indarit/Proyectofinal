@@ -1,11 +1,10 @@
 import React from "react";
-
+import { notasAlumnoContext } from "./context/notasAlumnoContext";
 import Container from "react-bootstrap/Container";
-import { infoUserContext } from "./context/infoUserContext";
 import { useContext } from "react";
 
 const AlumnoDatos = () => {
-  const dataContext = useContext(infoUserContext);
+  const dataContext = useContext(notasAlumnoContext);
   console.log(dataContext);
 
   return (

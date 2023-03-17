@@ -11,7 +11,7 @@ function BasicExample() {
   const handleSelectChange = (event, id) => {
     const { value, name } = event.target;
     const newTableData = groupData.map((item) => {
-      if (item.id === id) {
+      if (item.alumnos_id === id) {
         return {
           ...item,
           [name]: value,
@@ -19,8 +19,8 @@ function BasicExample() {
       }
       return item;
     });
-    console.log("value", value, name);
-    console.log(id);
+
+    console.log(newTableData);
     setGroupData(newTableData);
   };
 
@@ -42,6 +42,7 @@ function BasicExample() {
               <td class>
                 <div class="asistencia1">
                   <select
+                    name="status_asist1"
                     className="form-select"
                     placeholder="Hola"
                     onChange={(e) => handleSelectChange(e, item.alumnos_id)}
@@ -61,8 +62,10 @@ function BasicExample() {
               <td class>
                 <div class="asistencia2">
                   <select
+                    name="status_asist2"
                     className="form-select"
                     aria-label="Default select example"
+                    onChange={(e) => handleSelectChange(e, item.alumnos_id)}
                   >
                     <option value="0" selected disabled>
                       {item.status_asist2}
@@ -78,8 +81,10 @@ function BasicExample() {
               <td class>
                 <div class="tarea">
                   <select
+                    name="status_tarea"
                     className="form-select"
                     aria-label="Default select example"
+                    onChange={(e) => handleSelectChange(e, item.alumnos_id)}
                   >
                     <option value="0" selected disabled>
                       {item.status_tarea}
