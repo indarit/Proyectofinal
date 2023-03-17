@@ -73,6 +73,22 @@ export const DataAlumnosContextProvider = ({ children }) => {
     getDataAwait();
   }, [moduloId]);
 
+  const handleSaveAll = async () => {
+    try {
+      const response = await fetch(`${URL}/evaluacion`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(groupData),
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   if (loading) {
     return <div>Cargando...</div>;
   }
@@ -90,6 +106,8 @@ export const DataAlumnosContextProvider = ({ children }) => {
           setModuloId,
           setSemana,
           grupoCode,
+          setGroupData,
+          handleSaveAll,
         }}
       >
         {children}

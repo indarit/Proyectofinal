@@ -5,7 +5,24 @@ import { dataAlumnosContext } from "../context/dataAlumnosContext";
 import { useContext } from "react";
 
 function BasicExample() {
-  const { groupData } = useContext(dataAlumnosContext);
+  const { groupData, setGroupData, handleSaveAll } =
+    useContext(dataAlumnosContext);
+
+  const handleSelectChange = (event, id) => {
+    const { value, name } = event.target;
+    const newTableData = groupData.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          [name]: value,
+        };
+      }
+      return item;
+    });
+    console.log("value", value, name);
+    console.log(id);
+    setGroupData(newTableData);
+  };
 
   return (
     <>
@@ -24,15 +41,19 @@ function BasicExample() {
               <td>{item.firstname}</td>
               <td class>
                 <div class="asistencia1">
-                  <select className="form-select" placeholder="Hola">
+                  <select
+                    className="form-select"
+                    placeholder="Hola"
+                    onChange={(e) => handleSelectChange(e, item.alumnos_id)}
+                  >
                     <option value="0" selected disabled>
                       {item.status_asist1}
                     </option>
-                    <option value="1">Yes</option>
-                    <option value="2">Delay</option>
-                    <option value="3">Unnoticed Delay</option>
-                    <option value="4">Missing</option>
-                    <option value="5">Unnoticed Missing</option>
+                    <option value="Yes">Yes</option>
+                    <option value="Delay">Delay</option>
+                    <option value="Unnoticed Delay">Unnoticed Delay</option>
+                    <option value="Missing">Missing</option>
+                    <option value="Unnoticed Missing">Unnoticed Missing</option>
                   </select>
                 </div>
               </td>
@@ -46,11 +67,11 @@ function BasicExample() {
                     <option value="0" selected disabled>
                       {item.status_asist2}
                     </option>
-                    <option value="1">Yes</option>
-                    <option value="2">Delay</option>
-                    <option value="3">Unnoticed Delay</option>
-                    <option value="4">Missing</option>
-                    <option value="5">Unnoticed Missing</option>
+                    <option value="Yes">Yes</option>
+                    <option value="Delay">Delay</option>
+                    <option value="Unnoticed Delay">Unnoticed Delay</option>
+                    <option value="Missing">Missing</option>
+                    <option value="Unnoticed Missing">Unnoticed Missing</option>
                   </select>
                 </div>
               </td>
@@ -63,9 +84,9 @@ function BasicExample() {
                     <option value="0" selected disabled>
                       {item.status_tarea}
                     </option>
-                    <option value="1">Done</option>
-                    <option value="2">Uncomplete</option>
-                    <option value="3">Not Done</option>
+                    <option value="Done">Done</option>
+                    <option value="Uncomplete">Uncomplete</option>
+                    <option value="Not Done">Not Done</option>
                   </select>
                 </div>
               </td>
@@ -73,7 +94,9 @@ function BasicExample() {
           ))}
         </tbody>
       </Table>
-      <Button className="save-buttom">Guardar</Button>{" "}
+      <Button className="save-buttom" onClick={handleSaveAll}>
+        Guardar
+      </Button>{" "}
     </>
   );
 }

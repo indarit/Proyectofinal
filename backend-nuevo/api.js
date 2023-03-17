@@ -18,26 +18,26 @@ const getAlumnoById = async (req, res) => {
 
 const getEvaluacionById = async (req, res) => {
   const userId = req.params.userId;
-  const query = `select users_id,semana , status_tarea, status_asist1, status_asist2, nombre_modulo from evaluacion join modulo on modulo.id = evaluacion.modulo_id where users_id= $1`;
+  const query = `select firstname, lastname, semana , status_tarea, status_asist1, status_asist2, nombre_modulo from alumnos a join evaluacion e on e.alumnos_id = a.id join modulo m on m.id = e.modulo_id where users_Id =$1`;
   await database.pool
     .query(query, [userId])
     .then((result) => res.status(200).json(result.rows))
     .catch((e) => console.error(e));
 };
 const getmoduloById = async (req, res) => {
-  const userId = req.params.userId;
+  const modulo_Id = req.params.moduloId;
   const query = `select * from modulo where id=$1`;
   await database.pool
-    .query(query, [userId])
+    .query(query, [modulo_Id])
     .then((result) => res.status(200).json(result.rows))
     .catch((e) => console.error(e));
 };
 
 const getgrupoById = async (req, res) => {
-  const userId = req.params.userId;
+  const grupo_Id = req.params.grupoId;
   const query = `select * from grupo where codigo_grupo=$1`;
   await database.pool
-    .query(query, [userId])
+    .query(query, [grupo_Id])
     .then((result) => res.status(200).json(result.rows))
     .catch((e) => console.error(e));
 };
@@ -69,38 +69,37 @@ const getEvaluacion = async (req, res) => {
 const putevaluacion = async (req, res) => {
   const selectEvaluacionAlumno = `select * from evaluacion where alumnos_id= $1 and modulo_id= $2 and semana= $3 limit 1`;
   const sqlUpdateAlumnos = `update evaluacion set  status_tarea= $1, status_asist1= $2, status_asist2= $3 where alumnos_id=$4 and modulo_id =$5 and semana =$6`;
-
+  const sqlinsetevaluacion = `INSERT INTO evaluacion (alumnos_id, modulo_id, semana , status_tarea, status_asist1, status_asist2) values ($1,$2,$3,$4,$5,$6)`;
   const evaluaciones = req.body;
-
-  evaluaciones.forEach((e) => {
+  evaluaciones.forEach(async (e) => {
     console.log("!!!!", e);
-    const evaluaciones_actuales = database.pool.query(
-      selectEvaluacionAlumno,
-      [e.alumno_id, e.modulo_id, e.semana],
-      async (error, result) => {
-        if (error) {
-          res.send(`El ID ${e.alumno_id} no existe en la BD`);
-        }
-        console.log("!!alo!", e.alumno_id);
-        const evaluacionAlumno = result.rows;
-        const evaluacionAlumnoActualizada = await database.pool.query(
-          sqlUpdateAlumnos,
-          [
-            e.status_tarea,
-            e.status_asist1,
-            e.status_asist2,
-            e.alumno_id,
-            e.modulo_id,
-            e.semana,
-          ],
-          (error, result) => {
-            if (error) console.log("Update", error);
-            res.send("User updated successfully");
-          }
-        );
-      }
-    );
+    const evaluacionactual = await database.pool.query(selectEvaluacionAlumno, [
+      e.alumnos_id,
+      e.modulo_id,
+      e.semana,
+    ]);
+    console.log(evaluacionactual.rows);
+    if (evaluacionactual.rows.length) {
+      const evaluacionactual = await database.pool.query(sqlUpdateAlumnos, [
+        e.status_tarea,
+        e.status_asist1,
+        e.status_asist2,
+        e.alumnos_id,
+        e.modulo_id,
+        e.semana,
+      ]);
+    } else {
+      await database.pool.query(sqlinsetevaluacion, [
+        e.alumnos_id,
+        e.modulo_id,
+        e.semana,
+        e.status_tarea,
+        e.status_asist1,
+        e.status_asist2,
+      ]);
+    }
   });
+  res.status(200).json("ok");
 };
 const getGrupos = async (req, res) => {
   await database.pool
